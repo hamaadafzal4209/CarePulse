@@ -1,18 +1,16 @@
 import RegisterForm from "@/components/forms/RegisterForm";
 import { getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
-const Register = async ({params: {userId}} : SearchParamProps) => {
-
+const Register = async ({ params: { userId } }: SearchParamProps) => {
   const user = await getUser(userId);
-  
+
   return (
     <div>
       <div className="flex h-screen max-h-screen">
-        <section className="remove-scrollbar container my-auto">
-          <div className="sub-container max-w-md">
+        <section className="remove-scrollbar container ">
+          <div className="sub-container max-w-3xl flex-1 w-full">
             <Image
               width={1000}
               height={1000}
@@ -23,11 +21,8 @@ const Register = async ({params: {userId}} : SearchParamProps) => {
 
             <RegisterForm user={user} />
 
-            <div className="text-14-regular mt-20 flex items-center justify-between">
-              <p className="text-dark-600">© 2024 CarePualse </p>
-              <p className="text-green-500">
-                <Link href="/?admin=true">Admin</Link>
-              </p>
+            <div className="text-14-regular mt-20">
+              <p className="text-dark-600 pb-8">© 2024 CarePualse </p>
             </div>
           </div>
         </section>

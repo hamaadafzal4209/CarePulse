@@ -258,7 +258,7 @@ const RegisterForm = ({ user }: { user: User }) => {
                 fieldType={FormFieldType.TEXTAREA}
                 control={form.control}
                 name="familyMedicalHistory"
-                label=" Family medical history (if relevant)"
+                label=" Family medical history"
                 placeholder="Mother had brain cancer, Father has hypertension"
               />
 
