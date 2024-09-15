@@ -1,6 +1,7 @@
 import { users } from "../appwrite.config";
 import { ID, Query } from "node-appwrite";
 
+// CREATE APPWRITE USER
 export const createUser = async (user: CreateUserParams) => {
   try {
     const normalizedEmail = user.email.trim().toLowerCase(); // Normalize email
