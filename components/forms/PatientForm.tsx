@@ -43,21 +43,26 @@ const PatientForm = () => {
     phone,
   }: z.infer<typeof userFormValidation>) {
     setIsLoading(true);
-
+  
     try {
-      const userData = { name, email, phone };
-
+      const userData = { name, email: email.trim().toLowerCase(), phone }; // Normalize email
+  
       const user = await createUser(userData);
-
-      if (user) {
-        router.push(`/patients/${user.id}/register`);
+  
+      if (user && user.$id) { // Appwrite uses $id for the user ID
+        router.push(`/patients/${user.$id}/register`);
+      } else {
+        console.error("User ID is undefined");
       }
-
-      console.log(userData);
+  
+      console.log("User data:", userData);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
-  }
+  }  
+
   return (
     <div>
       <Form {...form}>
