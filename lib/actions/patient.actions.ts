@@ -1,5 +1,6 @@
 import { users } from "../appwrite.config";
 import { ID, Query } from "node-appwrite";
+import { parseStringify } from "../utils";
 
 // CREATE APPWRITE USER
 export const createUser = async (user: CreateUserParams) => {
@@ -14,10 +15,9 @@ export const createUser = async (user: CreateUserParams) => {
       undefined, // Handle password if required by your Appwrite setup
       user.name
     );
-    
+
     console.log("New User created: ", newUser);
     return newUser; // Return the created user object
-
   } catch (error: any) {
     // Check if the error code is 409, indicating a user already exists
     if (error?.code === 409) {
@@ -41,5 +41,19 @@ export const createUser = async (user: CreateUserParams) => {
 
     console.error("An error occurred while creating a new user:", error);
     throw error; // Re-throw the error for further handling
+  }
+};
+
+// GET USER
+export const getUser = async (userId: string) => {
+  try {
+    const user = await users.get(userId);
+
+    return parseStringify(user);
+  } catch (error) {
+    console.error(
+      "An error occurred while retrieving the user details:",
+      error
+    );
   }
 };

@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { unknown, z } from "zod";
 
 import { Form } from "@/components/ui/form";
 import CustomFormField from "../CustomFormField";
@@ -43,26 +43,27 @@ const PatientForm = () => {
     phone,
   }: z.infer<typeof userFormValidation>) {
     setIsLoading(true);
-  
+
     try {
       const userData = { name, email: email.trim().toLowerCase(), phone }; // Normalize email
-  
+
       const user = await createUser(userData);
-  
-      if (user && user.$id) { // Appwrite uses $id for the user ID
+
+      if (user && user.$id) {
+        // Appwrite uses $id for the user ID
         router.push(`/patients/${user.$id}/register`);
       } else {
         console.error("User ID is undefined");
       }
-      toast.success("User created successfully")
+      toast.success("User created successfully");
       console.log("User data:", userData);
-    } catch (error) {
+    } catch (error: unknown) {
       console.log(error);
       toast.error(error.message);
     } finally {
       setIsLoading(false);
     }
-  }  
+  }
 
   return (
     <div>
