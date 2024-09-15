@@ -11,6 +11,7 @@ import { useState } from "react";
 import { userFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
+import toast from "react-hot-toast";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -53,10 +54,11 @@ const PatientForm = () => {
       } else {
         console.error("User ID is undefined");
       }
-  
+      toast.success("User created successfully")
       console.log("User data:", userData);
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     } finally {
       setIsLoading(false);
     }
