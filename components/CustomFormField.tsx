@@ -15,6 +15,7 @@ import Image from "next/image";
 import { Textarea } from "./ui/textarea";
 import PhoneInput from "react-phone-number-input";
 import 'react-phone-number-input/style.css'
+import "react-datepicker/dist/react-datepicker.css";
 import ReactDatePicker from "react-datepicker";
 import { E164Number } from "libphonenumber-js/core";
 import { Checkbox } from "./ui/checkbox";

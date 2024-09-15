@@ -91,7 +91,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             />
 
             {/* EMAIL & PHONE */}
-            <div className="flex flex-col gap-6 xl:flex-row">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <CustomFormField
                 fieldType={FormFieldType.INPUT}
                 control={form.control}
@@ -112,7 +112,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             </div>
 
             {/* BirthDate & Gender */}
-            <div className="flex flex-col gap-6 xl:flex-row">
+            <div className="flex gap-4 flex-col lg:flex-row">
               <CustomFormField
                 fieldType={FormFieldType.DATE_PICKER}
                 control={form.control}
@@ -128,7 +128,7 @@ const RegisterForm = ({ user }: { user: User }) => {
                 renderSkeleton={(field) => (
                   <FormControl>
                     <RadioGroup
-                      className="flex h-11 gap-6 xl:justify-between"
+                      className="flex h-11 gap-4 xl:justify-between"
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
@@ -147,7 +147,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             </div>
 
             {/* Address & Occupation */}
-            <div className="flex flex-col gap-6 xl:flex-row">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <CustomFormField
                 fieldType={FormFieldType.INPUT}
                 control={form.control}
@@ -166,7 +166,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             </div>
 
             {/* Emergency Contact Name & Emergency Contact Number */}
-            <div className="flex flex-col gap-6 xl:flex-row">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <CustomFormField
                 fieldType={FormFieldType.INPUT}
                 control={form.control}
@@ -215,7 +215,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             </CustomFormField>
 
             {/* INSURANCE & POLICY NUMBER */}
-            <div className="flex flex-col gap-6 xl:flex-row">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <CustomFormField
                 fieldType={FormFieldType.INPUT}
                 control={form.control}
@@ -234,7 +234,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             </div>
 
             {/* ALLERGY & CURRENT MEDICATIONS */}
-            <div className="flex flex-col gap-6 xl:flex-row">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <CustomFormField
                 fieldType={FormFieldType.TEXTAREA}
                 control={form.control}
@@ -253,7 +253,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             </div>
 
             {/* FAMILY MEDICATION & PAST MEDICATIONS */}
-            <div className="flex flex-col gap-6 xl:flex-row">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <CustomFormField
                 fieldType={FormFieldType.TEXTAREA}
                 control={form.control}
