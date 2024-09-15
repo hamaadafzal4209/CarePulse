@@ -112,7 +112,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             </div>
 
             {/* BirthDate & Gender */}
-            <div className="flex gap-4 flex-col lg:flex-row">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <CustomFormField
                 fieldType={FormFieldType.DATE_PICKER}
                 control={form.control}
