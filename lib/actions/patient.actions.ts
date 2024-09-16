@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { databases, storage, users } from "../appwrite.config";
-import { ID, Query,InputFile } from "node-appwrite";
+import { ID, Query, InputFile } from "node-appwrite";
 import { parseStringify } from "../utils";
 
 // Directly assign the variables
 const PROJECT_ID = "66e371830030780800d0";
-const API_KEY = "standard_a86434ebb7d29947a108ffe82287f3f481e4f5962318a0c79c6091fa4dfe9670ba87a5ca71d93a7baf000cb09e8a91685294da49b0b6c3bbfae259481237d912baa6b20bc5ea4bd3816ace29f4719fd3b2b8e570d4c08ce5615c6965cbaabcb5e491a469f9d3de9d023a93d6017a389ed051e178175424585f06ff204e975368";
+const API_KEY =
+  "standard_a86434ebb7d29947a108ffe82287f3f481e4f5962318a0c79c6091fa4dfe9670ba87a5ca71d93a7baf000cb09e8a91685294da49b0b6c3bbfae259481237d912baa6b20bc5ea4bd3816ace29f4719fd3b2b8e570d4c08ce5615c6965cbaabcb5e491a469f9d3de9d023a93d6017a389ed051e178175424585f06ff204e975368";
 const DATABASE_ID = "66e3725f003c347a7a34";
 const PATIENT_COLLECTION_ID = "66e37294000956bb2a5c";
 const DOCTOR_COLLECTION_ID = "66e372ca000946f0b5de";
