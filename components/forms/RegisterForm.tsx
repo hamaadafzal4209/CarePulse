@@ -14,7 +14,12 @@ import { registerPatient } from "@/lib/actions/patient.actions";
 import toast from "react-hot-toast";
 import { FormFieldType } from "./PatientForm";
 import { FileUploader } from "../FileUploader";
-import { Doctors, GenderOptions, IdentificationTypes, PatientFormDefaultValues } from "@/constants";
+import {
+  Doctors,
+  GenderOptions,
+  IdentificationTypes,
+  PatientFormDefaultValues,
+} from "@/constants";
 import { SelectItem } from "../ui/select";
 import Image from "next/image";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
@@ -37,21 +42,6 @@ const RegisterForm = ({ user }: { user: User }) => {
   const onSubmit = async (values: z.infer<typeof PatientFormValidation>) => {
     setIsLoading(true);
 
-    // Store file info in form data as
-    let formData;
-    if (
-      values.identificationDocument &&
-      values.identificationDocument?.length > 0
-    ) {
-      const blobFile = new Blob([values.identificationDocument[0]], {
-        type: values.identificationDocument[0].type,
-      });
-
-      formData = new FormData();
-      formData.append("blobFile", blobFile);
-      formData.append("fileName", values.identificationDocument[0].name);
-    }
-
     try {
       const patient = {
         userId: user.$id,
@@ -73,16 +63,17 @@ const RegisterForm = ({ user }: { user: User }) => {
         pastMedicalHistory: values.pastMedicalHistory,
         identificationType: values.identificationType,
         identificationNumber: values.identificationNumber,
-        identificationDocument: values.identificationDocument
-          ? formData
-          : undefined,
+        identificationDocument: values.identificationDocument?.[0],
         privacyConsent: values.privacyConsent,
       };
 
       const newPatient = await registerPatient(patient);
+      toast.success("Patient successfully registered")
 
+      console.log(patient);
+      
       if (newPatient) {
-        router.push(`/patients/${user.$id}/new-appointment`);
+        // router.push(`/patients/${user.$id}/new-appointment`);
       }
     } catch (error) {
       console.log(error);
