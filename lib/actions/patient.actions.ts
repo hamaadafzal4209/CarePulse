@@ -82,10 +82,10 @@ export const registerPatient = async ({
 
         // Upload file to Appwrite Storage
         file = await storage.createFile(BUCKET_ID, ID.unique(), buffer, [
-          'read', // Permissions (adjust as per your need)
-          'write'
+          "read", // Permissions (adjust as per your need)
+          "write",
         ]);
-        
+
         if (!file.$id) throw new Error("File upload failed.");
       } else {
         throw new Error("The provided fileBlob is not a valid Blob.");
