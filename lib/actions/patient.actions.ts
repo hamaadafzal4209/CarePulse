@@ -21,7 +21,7 @@ export const createUser = async (user: CreateUserParams) => {
 
     // Try to create a new user
     const newUser = await users.create(
-      ID.unique(),
+      ID.unique(),  
       normalizedEmail,
       user.phone,
       undefined,

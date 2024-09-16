@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { unknown, z } from "zod";
+import { z } from "zod";
 
 import { Form } from "@/components/ui/form";
 import CustomFormField from "../CustomFormField";
