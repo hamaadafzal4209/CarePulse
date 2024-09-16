@@ -1,8 +1,7 @@
 import { databases, storage, users } from "../appwrite.config";
 import { ID, Query } from "node-appwrite";
 import { parseStringify } from "../utils";
-import * as fs from "fs";
-import * as path from "path";
+import { Buffer } from "buffer";
 
 // Directly assign the variables
 const DATABASE_ID = "66e3725f003c347a7a34";
@@ -72,22 +71,22 @@ export const registerPatient = async ({
 }: RegisterUserParams) => {
   try {
     let file;
-    if (identificationDocument && identificationDocument.length > 0) {
-      const fileBlob = identificationDocument[0]; // Assuming it's a FileList
-      
-      if (fileBlob instanceof Blob) {
-        const buffer = Buffer.from(await fileBlob.arrayBuffer());
 
-        // Upload file
-        file = await storage.createFile(
-          BUCKET_ID,
-          ID.unique(),
-          fileBlob.name,
-          buffer,
-          {
-            contentType: fileBlob.type,
-          }
-        );
+    // Handle file upload if the identification document is provided
+    if (identificationDocument && identificationDocument.length > 0) {
+      const fileBlob = identificationDocument[0]; // Assuming it's a FileList or array
+
+      // Check if it's a valid Blob or File object
+      if (fileBlob instanceof Blob) {
+        const buffer = Buffer.from(await fileBlob.arrayBuffer()); // Convert Blob to Buffer
+
+        // Upload file to Appwrite Storage
+        file = await storage.createFile(BUCKET_ID, ID.unique(), buffer, [
+          'read', // Permissions (adjust as per your need)
+          'write'
+        ]);
+        
+        if (!file.$id) throw new Error("File upload failed.");
       } else {
         throw new Error("The provided fileBlob is not a valid Blob.");
       }
@@ -101,9 +100,9 @@ export const registerPatient = async ({
       PATIENT_COLLECTION_ID,
       ID.unique(),
       {
-        identificationDocumentId: file?.$id ?? null,
+        identificationDocumentId: file?.$id ?? null, // Store file ID
         identificationDocumentUrl: file?.$id
-          ? `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file.$id}/view?project=${PROJECT_ID}`
+          ? `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file.$id}/view?project=${PROJECT_ID}` // Generate file URL
           : null,
         ...patient,
       }

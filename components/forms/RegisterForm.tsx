@@ -68,10 +68,10 @@ const RegisterForm = ({ user }: { user: User }) => {
       };
 
       const newPatient = await registerPatient(patient);
-      toast.success("Patient successfully registered")
+      toast.success("Patient successfully registered");
 
       console.log(patient);
-      
+
       if (newPatient) {
         // router.push(`/patients/${user.$id}/new-appointment`);
       }
@@ -326,7 +326,10 @@ const RegisterForm = ({ user }: { user: User }) => {
               label="Scanned Copy of Identification Document"
               renderSkeleton={(field) => (
                 <FormControl>
-                  <FileUploader files={field.value} onChange={field.onChange} />
+                  <FileUploader
+                    files={field.value}
+                    onChange={(files) => field.onChange(files)}
+                  />
                 </FormControl>
               )}
             />
